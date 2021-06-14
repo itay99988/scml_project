@@ -1,4 +1,4 @@
-SCML 2020 Agent Skeleton
+SCML 2021 Agent Skeleton
 ========================
 
 This skeleton contains the following folders:
@@ -7,6 +7,7 @@ This skeleton contains the following folders:
 
    - *myagent.py* : A skeleton for an agent that directly responds to callbacks. 
    - *myagent2.py* : A skeleton for an agent that uses builtin components.
+   - *YIYAgent.py* : Our actual agent.
   
   You need to use ONLY ONE of these two files (approaches) to build your agent.
 
@@ -63,14 +64,13 @@ To develop your agent, the only required steps are the following:
   
 Agent Information
 -----------------
-Fill this section with your agent information
 
-  - Agent Name: my-agent-name
-  - Team Name: my-team-name
-  - Contact Email: my-email@some-server.xyz
-  - Affiliation: Institute, Department
-  - Country: country-name
+  - Agent Name: YIYAgent
+  - Team Name: Team 78
+  - Contact Email: itay.cohen5@live.biu.ac.il
+  - Affiliation: Bar Ilan University, Computer Science
+  - Country: Israel
   - Team Members:
-    1. First Name <first.email@institute.xyz>
-    2. Second Name <first.email@institute.xyz>
-    3. ...    
+    1. Yoel Benabou - yoel.benabou@gmail.com
+    2. Yehoshua Stern - <first.email@institute.xyz>
+    3. Itay Cohen - itay.cohen5@live.biu.ac.il
