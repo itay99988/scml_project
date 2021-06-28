@@ -22,16 +22,24 @@ class YIYProductionStrategy(ProductionStrategy):
             is_seller = signed_contract.annotation["seller"] == self.id
             step = signed_contract.agreement["time"]
             earliest_production = self.awi.current_step
-            latest = self.awi.n_steps - 1
+            latest = self.awi.n_steps - 2
 
             if self.is_supply():
                 if is_seller:
                     continue
                 # find the earliest time I can do anything about this contract
-                if step > latest or step < earliest_production:
+                if step > latest + 1 or step < earliest_production:
                     continue
 
                 input_product = signed_contract.annotation["product"]
+
+                steps, _ = self.awi.schedule_production(
+                    process=input_product,
+                    repeats=contract.agreement["quantity"],
+                    step=(step, latest),
+                    line=-1,
+                    partial_ok=True,
+                )
 
             else:
                 if not is_seller:
@@ -42,13 +50,13 @@ class YIYProductionStrategy(ProductionStrategy):
                 output_product = signed_contract.annotation["product"]
                 input_product = output_product - 1
 
-            steps, _ = self.awi.schedule_production(
-                process=input_product,
-                repeats=signed_contract.agreement["quantity"],
-                step=(earliest_production, step - 1),
-                line=-1,
-                partial_ok=True,
-            )
+                steps, _ = self.awi.schedule_production(
+                    process=input_product,
+                    repeats=signed_contract.agreement["quantity"],
+                    step=(earliest_production, step - 1),
+                    line=-1,
+                    partial_ok=True,
+                )
 
             self.set_schedule_range(is_seller, signed_contract, steps)
 
