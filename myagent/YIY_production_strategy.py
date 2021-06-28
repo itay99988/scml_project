@@ -11,27 +11,22 @@ class YIYProductionStrategy(ProductionStrategy):
         product_in_price = self.awi.catalog_prices[self.awi.my_input_product]
         product_out_price = self.awi.catalog_prices[self.awi.my_output_product]
         production_cost = np.max(self.awi.profile.costs[:, self.awi.my_input_product])
-        if product_out_price / 2 > product_in_price / 2 + production_cost:
-            return True
-        return False
+        return (product_out_price / 2) > (product_in_price / 2) + production_cost
 
-    def on_contracts_finalized(self, signed: List[Contract], cancelled: List[Contract],
-                               rejectors: List[List[str]]):
+    def on_contracts_finalized(self, signed: List[Contract], cancelled: List[Contract], rejectors: List[List[str]]):
         super().on_contracts_finalized(signed, cancelled, rejectors)
         for signed_contract in signed:
             is_seller = signed_contract.annotation["seller"] == self.id
-            step = signed_contract.agreement["time"]
-            earliest_production = self.awi.current_step
+            current_step_prod = self.awi.current_step
             latest = self.awi.n_steps - 2
+            step = signed_contract.agreement["time"]
 
             if self.is_supply():
-                if is_seller:
-                    continue
-                if step > latest + 1 or step < earliest_production:
+                if is_seller or step > latest + 1 or step < current_step_prod:
                     continue
 
+                # I will schedule production
                 input_product = signed_contract.annotation["product"]
-
                 steps, _ = self.awi.schedule_production(
                     process=input_product,
                     repeats=signed_contract.agreement["quantity"],
@@ -41,18 +36,16 @@ class YIYProductionStrategy(ProductionStrategy):
                 )
 
             else:
-                if not is_seller:
-                    continue
-                if step > latest or step < earliest_production:
+                if not is_seller or step > latest or step < current_step_prod:
                     continue
 
+                # if I am a seller, I will schedule production
                 output_product = signed_contract.annotation["product"]
                 input_product = output_product - 1
-
                 steps, _ = self.awi.schedule_production(
                     process=input_product,
                     repeats=signed_contract.agreement["quantity"],
-                    step=(earliest_production, step - 1),
+                    step=(current_step_prod, step - 1),
                     line=-1,
                     partial_ok=True,
                 )
