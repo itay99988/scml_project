@@ -27,7 +27,6 @@ class YIYProductionStrategy(ProductionStrategy):
             if self.is_supply():
                 if is_seller:
                     continue
-                # find the earliest time I can do anything about this contract
                 if step > latest + 1 or step < earliest_production:
                     continue
 
@@ -35,7 +34,7 @@ class YIYProductionStrategy(ProductionStrategy):
 
                 steps, _ = self.awi.schedule_production(
                     process=input_product,
-                    repeats=contract.agreement["quantity"],
+                    repeats=signed_contract.agreement["quantity"],
                     step=(step, latest),
                     line=-1,
                     partial_ok=True,
