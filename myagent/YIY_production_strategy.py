@@ -22,13 +22,13 @@ class YIYProductionStrategy(ProductionStrategy):
             is_seller = signed_contract.annotation["seller"] == self.id
             step = signed_contract.agreement["time"]
             earliest_production = self.awi.current_step
-            latest = self.awi.n_steps - 2
+            latest = self.awi.n_steps - 1
 
             if self.is_supply():
                 if is_seller:
                     continue
                 # find the earliest time I can do anything about this contract
-                if step > latest + 1 or step < earliest_production:
+                if step > latest or step < earliest_production:
                     continue
 
                 input_product = signed_contract.annotation["product"]
@@ -36,7 +36,7 @@ class YIYProductionStrategy(ProductionStrategy):
             else:
                 if not is_seller:
                     continue
-                if step > self.awi.n_steps - 1 or step < earliest_production:
+                if step > latest or step < earliest_production:
                     continue
 
                 output_product = signed_contract.annotation["product"]
