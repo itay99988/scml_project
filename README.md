@@ -72,5 +72,5 @@ Agent Information
   - Country: Israel
   - Team Members:
     1. Yoel Benabou - yoel.benabou@gmail.com
-    2. Yehoshua Stern - <first.email@institute.xyz>
+    2. Yehoshua Stern - shukistern@gmail.com
     3. Itay Cohen - itay.cohen5@live.biu.ac.il

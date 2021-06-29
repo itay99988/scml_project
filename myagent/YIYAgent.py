@@ -57,10 +57,15 @@ from scml.scml2020 import PredictionBasedTradingStrategy
 from scml.scml2020 import MovingRangeNegotiationManager
 from scml.scml2020 import TradeDrivenProductionStrategy
 
+
+from trading_strategy import SklearnPredictionBasedTradingStrategy
+
+
 class YIYAgent(
     TradeDrivenProductionStrategy,
     MovingRangeNegotiationManager,
     PredictionBasedTradingStrategy,
+    # SklearnPredictionBasedTradingStrategy,
     SCML2020Agent
 ):
     """
