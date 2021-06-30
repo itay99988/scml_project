@@ -3,14 +3,9 @@ SCML 2021 Agent Skeleton
 
 This skeleton contains the following folders:
 
-1. myagent: This folder contains two modules: 
-
-   - *myagent.py* : A skeleton for an agent that directly responds to callbacks. 
-   - *myagent2.py* : A skeleton for an agent that uses builtin components.
-   - *YIYAgent.py* : Our actual agent.
+1. myagent: This folder contains one main module: 
+   - *YIYAgent.py* : Our agent.
   
-  You need to use ONLY ONE of these two files (approaches) to build your agent.
-
 2. report: A folder with latex and docx files that you can use to write 
    your 2-4 pages report. Please remember to submit a `pdf` version of the 
    report. A sample PDF is also provided for reference.
