@@ -1,6 +1,6 @@
 """
-**Submitted to ANAC 2020 SCML**
-*Authors* type-your-team-member-names-with-their-emails here
+**Submitted to ANAC 2021 SCML**
+*Authors* Yoel Benabou, Yehoshua Stern, Itay Cohen
 
 
 This code is free to use or update given that proper attribution is given to 
@@ -59,11 +59,12 @@ from scml.scml2020 import TradeDrivenProductionStrategy
 
 
 from trading_strategy import SklearnPredictionBasedTradingStrategy
-
+from YIY_production_strategy import YIYProductionStrategy
+from YIY_negotiation_strategy import YIYNegotiationManager
 
 class YIYAgent(
-    TradeDrivenProductionStrategy,
-    MovingRangeNegotiationManager,
+    YIYProductionStrategy,
+    YIYNegotiationManager,
     PredictionBasedTradingStrategy,
     # SklearnPredictionBasedTradingStrategy,
     SCML2020Agent
