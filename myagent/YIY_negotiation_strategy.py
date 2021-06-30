@@ -37,7 +37,7 @@ class SyncController(SAOSyncController):
         self,
         *args,
         is_seller: bool,
-        parent: "PredictionBasedTradingStrategy",
+        parent: "SklearnPredictionBasedTradingStrategy",
         price_weight=0.7,
         utility_threshold=0.9,
         time_threshold=0.9,

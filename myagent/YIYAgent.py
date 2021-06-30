@@ -65,8 +65,8 @@ from YIY_negotiation_strategy import YIYNegotiationManager
 class YIYAgent(
     YIYProductionStrategy,
     YIYNegotiationManager,
-    PredictionBasedTradingStrategy,
-    # SklearnPredictionBasedTradingStrategy,
+    # PredictionBasedTradingStrategy,
+    SklearnPredictionBasedTradingStrategy,
     SCML2020Agent
 ):
     """
@@ -82,7 +82,7 @@ class YIYAgent(
 
 def run(competition='std',
          reveal_names=True,
-         n_steps=20,
+         n_steps=50,
          n_configs=2,
          max_n_worlds_per_config=None,
          n_runs_per_world=1
